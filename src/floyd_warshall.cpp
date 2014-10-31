@@ -1,5 +1,6 @@
 //---------------------------------------------------------------------------
 #include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
 //#include <windows.h>
 //---------------------------------------------------------------------------
@@ -31,11 +32,13 @@ void clear(){
         if(mas!=NULL){
                 for(int i=0; i<kol; i++) delete mas[i];
                 delete mas;
+		//for(int i=0; i<kol; i++) free(mas[i]);
+		//free(mas);
         }
 }
 
 //---------------------------------------------------------------------------
-void main()
+int main()
 {
         //SetConsoleOutputCP(1251);//чтобы русский язык был виден в консоли
         
@@ -43,12 +46,14 @@ void main()
         scanf("%i",&kol);
 		
 		if(kol<1){
-			ptintf("Null graph");
-			return;
+			printf("Null graph");
+			return 0;
 		}
 
         mas = new int*[kol];
         for(int i=0; i<kol; i++) mas[i] = new int[kol];
+	//mas = (int**) malloc (sizeof(int)*kol);
+        //for(int i=0; i<kol; i++) mas[i] = (int*) malloc (sizeof(int)*kol);
 
         //printf("Введите матрицу смежности графа: \n");
         for(int i=0; i<kol; i++)
@@ -67,6 +72,7 @@ void main()
         clear();
 
         //system("pause");
+	return 0;
 }
 //---------------------------------------------------------------------------
  
